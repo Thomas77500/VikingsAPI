@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils/server.php';
 
 function getDatabaseConnection(): PDO {
@@ -13,4 +14,15 @@ function getDatabaseConnection(): PDO {
         returnError(500, 'Could not connect to the database. ' . $e->getMessage());
         die();
     }
+=======
+
+function getDatabaseConnection(): PDO
+{
+    $dbname = 'vikings';
+    $port = 8889;
+    $user = 'root';
+    $pwd = 'root';
+    $host = 'localhost';
+    return new PDO("mysql:host=$host;dbname=$dbname;charset=utf8;port=$port", $user, $pwd);
+>>>>>>> de224af (Initial commit : API Vikings avec Weapon et Viking endpoints)
 }

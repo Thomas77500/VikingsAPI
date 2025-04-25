@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils/database.php';
 
 function findOneViking(string $id) {
@@ -61,3 +62,59 @@ function deleteViking(string $id) {
     }
     return null;
 }
+=======
+require_once $_SERVER['DOCUMENT_ROOT'] .  '/api/utils/database.php';
+
+function getVikingById(int $id) {
+    try {
+        $connection = getDatabaseConnection();
+        $sql = "SELECT id, name, health, defense, attack FROM viking WHERE id = :id";
+        $query = $connection->prepare($sql);
+        $res = $query->execute(['id' => $id]);
+        if ($res) {
+            return $query->fetch(PDO::FETCH_ASSOC);
+        }
+        return null;
+    } catch (Error $e) {
+        return null;
+    }
+}
+
+function findVikings(int $limit, int $offset) {
+    try {
+        $connection = getDatabaseConnection();
+        $sql = "SELECT id, name, health, defense, attack FROM viking LIMIT $limit OFFSET $offset";
+        $query = $connection->prepare($sql);
+        $res = $query->execute();
+        if ($res) {
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return null;
+    } catch (Error $e) {
+        return null;
+    }
+}
+
+function createViking($name, $health, $defense, $attack) {
+    try {
+        $connection = getDatabaseConnection();
+        $sql = "INSERT INTO viking (name, health, defense, attack) VALUES (:name, :health, :defense, :attack)";
+        $query = $connection->prepare($sql);
+        $res = $query->execute([
+            'name' => $name,
+            'health' => $health,
+            'defense' => $defense,
+            'attack' => $attack
+        ]);
+        if ($res) {
+            return $connection->lastInsertId();
+        }
+        return null;
+    } catch (Error $e) {
+        echo $e->getMessage();
+        return null;
+    }
+}
+
+//
+>>>>>>> de224af (Initial commit : API Vikings avec Weapon et Viking endpoints)

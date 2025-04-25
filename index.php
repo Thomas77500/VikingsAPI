@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils/database.php';
 
 try {
@@ -7,3 +8,5 @@ try {
 } catch (PDOException $e) {
     echo "Could not connect to the database. " . $e->getMessage();
 }
+=======
+>>>>>>> de224af (Initial commit : API Vikings avec Weapon et Viking endpoints)
